@@ -6,12 +6,13 @@ from selenium.webdriver.common.by import By
 options = webdriver.ChromeOptions()
 driver = webdriver.Chrome()
 
-driver.get('https://www.104.com.tw/jobs/search/?keyword=Java&order=1&jobsource=2018indexpoc&ro=0')
+driver.get('https://www.dcard.tw/f/cycu')
+time.sleep(100)
 
-for i in range(10):
-    time.sleep(2)
-    link = driver.find_element(By.CLASS_NAME, "js-next-page")
-    link.click()
+# for i in range(10):
+#     time.sleep(2)
+#     link = driver.find_element(By.CLASS_NAME, "js-next-page")
+#     link.click()
 
 
 # titles = driver.find_elements(By.CLASS_NAME, "js-job-link")

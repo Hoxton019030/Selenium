@@ -12,17 +12,20 @@ options.add_argument("--test-type")
 options.binary_location = "/usr/bin/chromium"
 driver = webdriver.Chrome()
 url = "https://www.104.com.tw/jobs/search/?https://www.104.com.tw/jobs/search/?ro=0&kwop=7&keyword=Java&expansionType=area%2Cspec%2Ccom%2Cjob%2Cwf%2Cwktm&area=6001001001%2C6001001007%2C6001002000%2C6001001003%2C6001001006%2C6001001002%2C6001001012%2C6001001004%2C6001001005&order=15&asc=0&page=1&mode=s&jobsource=2018indexpoc&langFlag=0&langStatus=0&recommendJob=1&hotJob=1"
+tainanUrl ="https://www.104.com.tw/jobs/search/?ro=0&kwop=7&keyword=Java&expansionType=area%2Cspec%2Ccom%2Cjob%2Cwf%2Cwktm&area=6001014000&order=12&asc=0&page=1&mode=s&jobsource=2018indexpoc&langFlag=0&langStatus=0&recommendJob=1&hotJob=1"
 
-driver.get(url)
+driver.get(tainanUrl)
 driver.implicitly_wait(10)
 workbook = openpyxl.Workbook()
 sheet = workbook.active
 headers = ["職務名稱", "公司名稱", "相關描述", "工作簡述", "公司地址", "工作經驗要求", "網址連結"]
 sheet.append(headers)
+for i in range(6):
+    print(i)
 
-for i in range(113):  # 頁面的interator
+for i in range(1):  # 頁面的interator
     try:
-
+        print("目前處理到第", i, "頁")
         titles = driver.find_elements(By.CLASS_NAME, "js-job-link")
         companyNames = driver.find_elements(By.CSS_SELECTOR, "ul.b-list-inline.b-clearfix a")
         hrefs = driver.find_elements(By.CLASS_NAME, "js-job-link")
@@ -60,9 +63,8 @@ for i in range(113):  # 頁面的interator
 
         link = driver.find_element(By.CLASS_NAME, "js-next-page")
         link.click()
-        time.sleep(2)
-        print("目前處理到第", i, "頁")
-        workbook.save("test.xlsx")
+        time.sleep(3)
+        workbook.save("tainan.xlsx")
         print("儲存")
 
     except Exception as e:
