@@ -5,7 +5,7 @@ import os
 workbook = openpyxl.Workbook()
 
 ws = workbook.active
-ws.title = "QQ";
+ws.element = "QQ";
 headers = ["職務名稱", "公司名稱", "相關標籤", "工作簡述", "公司地址", "工作經驗要求", "網址連結"]
 ws.append(headers)
 # sheet = workbook.create_sheet("工作資料", 0)

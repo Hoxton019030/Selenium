@@ -1,20 +1,25 @@
+import time
+
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import requests
+from selenium.webdriver.common.by import By
 
 options = webdriver.ChromeOptions()
-options.add_argument('--ignore-certificate-errors')
-options.add_argument("--test-type")
-options.binary_locationsq = "/usr/bin/chromium"
 driver = webdriver.Chrome()
 
-driver.get('https://python.org')
-driver.save_screenshot("screenshot.png")
+driver.get('https://www.104.com.tw/jobs/search/?keyword=Java&order=1&jobsource=2018indexpoc&ro=0')
 
-driver.close()
-print("成功")
+for i in range(10):
+    time.sleep(2)
+    link = driver.find_element(By.CLASS_NAME, "js-next-page")
+    link.click()
 
-url = "https://www.104.com.tw/job/ajax/content/4sq6c"
 
-response =requests.get(url)
-print(response.text)
+# titles = driver.find_elements(By.CLASS_NAME, "js-job-link")
+# jobInfos = driver.find_elements(By.CSS_SELECTOR, "p.job-list-item__info.b-clearfix.b-content")
+# experiences = driver.find_elements(By.CSS_SELECTOR,
+#                                    "ul.b-list-inline.b-clearfix.job-list-intro.b-content li:nth-child(3)")
+# keyword = driver.find_element(By.ID, "main-content")
+# hrefs = driver.find_elements(By.CLASS_NAME, "js-job-link")
+
+# print(keyword.text)
+# driver.close()

@@ -20,7 +20,7 @@ sheet = workbook.active
 headers = ["職務名稱", "公司名稱", "相關描述", "工作簡述", "公司地址", "工作經驗要求", "網址連結"]
 sheet.append(headers)
 
-for i in range(100):  # 頁面的interator
+for i in range(113):  # 頁面的interator
     try:
 
         titles = driver.find_elements(By.CLASS_NAME, "js-job-link")
@@ -31,7 +31,10 @@ for i in range(100):  # 頁面的interator
         # stringTag = ""
         # for tag in tags:
         #     stringTag += tag.text
-        jobInfos = driver.find_elements(By.CLASS_NAME, "job-list-item__info")
+        # jobInfos = driver.find_elements(By.CLASS_NAME, "job-list-item__info")
+        jobInfos = driver.find_elements(By.CSS_SELECTOR, "p.job-list-item__info.b-clearfix.b-content")
+        # for jobInfo in jobInfos:
+        #     print(jobInfo.text)
         addresses = driver.find_elements(By.CSS_SELECTOR,
                                          "ul.b-list-inline.b-clearfix.job-list-intro.b-content li:first-child")
         experiences = driver.find_elements(By.CSS_SELECTOR,
@@ -60,6 +63,7 @@ for i in range(100):  # 頁面的interator
         time.sleep(2)
         print("目前處理到第", i, "頁")
         workbook.save("test.xlsx")
+        print("儲存")
 
     except Exception as e:
 
