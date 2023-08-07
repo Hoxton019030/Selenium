@@ -39,11 +39,15 @@ for i in range(0, 100):
 
     for j in range(len(jobTitle)):
         try:
+            try:
+                salary = salary[j * 5 + 2].text
+            except:
+                salary = "薪資為空"
             test = [jobTitle[j].text,
                     companyName[j].text,
                     describe[j].text,
                     address[j].text,
-                    salary[j * 5 + 2].text,
+                    salary,
                     link[j].get_attribute('href')
                     ]
             sheet.append(test)
